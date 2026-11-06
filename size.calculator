@@ -1,0 +1,18 @@
+import math
+
+def calcular_distancia(p1, p2, w, h):
+    """Calcula a distância euclidiana convertida para pixels em termos relativos."""
+    return math.sqrt(((p1.x - p2.x) * w) ** 2 + ((p1.y - p2.y) * h) ** 2)
+
+def classificar_tamanho(score):
+    """Classifica o tamanho com base no score geométrico ombro/quadril."""
+    if score < 0.30: return "PP"
+    elif score < 0.36: return "P"
+    elif score < 0.42: return "M"
+    elif score < 0.46: return "G"
+    else: return "GG"
+
+def calcular_score(ombro_px, quadril_px, altura_px):
+    """Calcula o score com base na proporção corporal em relação à altura."""
+    if altura_px == 0: return 0
+    return ((ombro_px / altura_px) * 1 + (quadril_px / altura_px) * 1)
